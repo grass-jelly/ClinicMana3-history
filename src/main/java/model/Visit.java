@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -36,13 +38,11 @@ public class Visit {
     private List<String> problems;
     @ManyToOne
     private Disease disease;
-    @OneToOne(
-            cascade = {CascadeType.ALL},
-            orphanRemoval = true
-    )
+    @OneToOne(mappedBy = "visit", orphanRemoval = true)
+    @JsonIgnore
     private Prescription prescription;
-
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(mappedBy = "visit", orphanRemoval = true)
+    @JsonIgnore
     private LabTest labTest;
 
     public Prescription getPrescription() {

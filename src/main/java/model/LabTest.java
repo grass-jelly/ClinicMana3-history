@@ -23,10 +23,7 @@ public class LabTest {
     )
     private Set<MedicalService> medicalServices;
 
-    @OneToOne(
-            mappedBy = "labTest"
-    )
-    @JsonIgnore
+    @OneToOne
     private Visit visit;
 
     public int getId() {

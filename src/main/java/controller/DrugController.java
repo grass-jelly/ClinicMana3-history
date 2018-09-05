@@ -65,11 +65,11 @@ public class DrugController {
         this.drugService.deleteDrug(id);
     }
 
-    @RequestMapping(
-            path = {"drugsPrescribed"},
-            method = {RequestMethod.GET}
-    )
-    public Map<Drug, Integer> getDrugs() {
-        return this.prescriptionService.getDrugCounts();
-    }
+//    @RequestMapping(
+//            path = {"drugsPrescribed"},
+//            method = {RequestMethod.GET}
+//    )
+//    public Map<Drug, Integer> getDrugs() {
+//        return this.prescriptionService.getDrugCounts();
+//    }
 }

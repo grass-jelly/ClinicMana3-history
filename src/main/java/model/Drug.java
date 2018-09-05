@@ -1,6 +1,7 @@
 package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Set;
 import javax.persistence.*;
 
@@ -9,16 +10,11 @@ public class Drug {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(
-            length = 1000
-    )
+    @Column(length = 1000)
     private String name;
-    @OneToMany(
-            mappedBy = "drug",
-            fetch = FetchType.EAGER
-    )
+    @OneToMany(mappedBy = "drug")
     @JsonIgnore
-    private Set<Prescription> prescriptions;
+    private Set<DrugInfo> drugInfos;
 
     public Drug() {
     }
@@ -39,11 +35,11 @@ public class Drug {
         this.name = name;
     }
 
-    public Set<Prescription> getPrescriptions() {
-        return this.prescriptions;
+    public Set<DrugInfo> getDrugInfos() {
+        return drugInfos;
     }
 
-    public void setPrescriptions(Set<Prescription> prescriptions) {
-        this.prescriptions = prescriptions;
+    public void setDrugInfos(Set<DrugInfo> drugInfos) {
+        this.drugInfos = drugInfos;
     }
 }

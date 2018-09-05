@@ -1,6 +1,7 @@
 package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Date;
 import java.util.Set;
 import javax.persistence.*;
@@ -31,9 +32,7 @@ public class Patient {
     private String address;
     @OneToMany(
             mappedBy = "patient",
-            cascade = {CascadeType.ALL},
-            orphanRemoval = true
-    )
+            orphanRemoval = true)
     @JsonIgnore
     private Set<Visit> visits;
 

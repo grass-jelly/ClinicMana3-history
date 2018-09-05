@@ -1,13 +1,9 @@
 package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Prescription {
@@ -16,19 +12,11 @@ public class Prescription {
             strategy = GenerationType.IDENTITY
     )
     private int id;
-    @OneToOne(
-            mappedBy = "prescription"
-    )
-    @JsonIgnore
+    @OneToOne
     private Visit visit;
-    @ManyToOne
-    private Drug drug;
-    @Column
-    private int quantity;
-    @Column
-    private String dose;
-    @Column
-    private String howToUse;
+    @OneToMany(mappedBy = "prescription")
+    @JsonIgnore
+    private Set<DrugInfo> drugInfos;
 
     public Visit getVisit() {
         return this.visit;
@@ -49,35 +37,11 @@ public class Prescription {
         this.id = id;
     }
 
-    public Drug getDrug() {
-        return this.drug;
+    public Set<DrugInfo> getDrugInfos() {
+        return drugInfos;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
-    }
-
-    public int getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getDose() {
-        return this.dose;
-    }
-
-    public void setDose(String dose) {
-        this.dose = dose;
-    }
-
-    public String getHowToUse() {
-        return this.howToUse;
-    }
-
-    public void setHowToUse(String howToUse) {
-        this.howToUse = howToUse;
+    public void setDrugInfos(Set<DrugInfo> drugInfos) {
+        this.drugInfos = drugInfos;
     }
 }

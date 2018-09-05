@@ -40,17 +40,17 @@ public class PrescriptionService {
         return (Prescription)query.uniqueResult();
     }
 
-    public Map<Drug, Integer> getDrugCounts() {
-        Map<Drug, Integer> map = new HashMap();
-
-        Prescription prescription;
-        for(Iterator var2 = this.getAllPrescriptions().iterator(); var2.hasNext(); map.put(prescription.getDrug(), (Integer)map.get(prescription.getDrug()) + 1)) {
-            prescription = (Prescription)var2.next();
-            if (!map.containsKey(prescription.getDrug())) {
-                map.put(prescription.getDrug(), 0);
-            }
-        }
-
-        return map;
-    }
+//    public Map<Drug, Integer> getDrugCounts() {
+//        Map<Drug, Integer> map = new HashMap();
+//
+//        Prescription prescription;
+//        for(Iterator var2 = this.getAllPrescriptions().iterator(); var2.hasNext(); map.put(prescription.getDrug(), (Integer)map.get(prescription.getDrug()) + 1)) {
+//            prescription = (Prescription)var2.next();
+//            if (!map.containsKey(prescription.getDrug())) {
+//                map.put(prescription.getDrug(), 0);
+//            }
+//        }
+//
+//        return map;
+//    }
 }
