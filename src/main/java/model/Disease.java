@@ -2,13 +2,7 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Disease {
@@ -17,12 +11,11 @@ public class Disease {
             strategy = GenerationType.IDENTITY
     )
     private int id;
-    @OneToMany(
-            mappedBy = "disease",
-            fetch = FetchType.EAGER
-    )
+
+    @ManyToMany(mappedBy = "diseases")
     @JsonIgnore
-    private Set<Visit> visits;
+    private Set<Diagnosis> diagnoses;
+
     @Column
     private String chapterCode;
     @Column
@@ -40,12 +33,12 @@ public class Disease {
     @Column
     private String diseaseName;
 
-    public Set<Visit> getVisits() {
-        return this.visits;
+    public Set<Diagnosis> getDiagnoses() {
+        return diagnoses;
     }
 
-    public void setVisits(Set<Visit> visits) {
-        this.visits = visits;
+    public void setDiagnoses(Set<Diagnosis> diagnoses) {
+        this.diagnoses = diagnoses;
     }
 
     public int getId() {

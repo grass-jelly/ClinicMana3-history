@@ -21,9 +21,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Visit {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     private Patient patient;
@@ -32,18 +30,17 @@ public class Visit {
     @Column
     private Time time;
     @Column
-    @ElementCollection(
-            fetch = FetchType.EAGER
-    )
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> problems;
-    @ManyToOne
-    private Disease disease;
     @OneToOne(mappedBy = "visit", orphanRemoval = true)
     @JsonIgnore
     private Prescription prescription;
     @OneToOne(mappedBy = "visit", orphanRemoval = true)
     @JsonIgnore
     private LabTest labTest;
+    @OneToOne(mappedBy = "visit", orphanRemoval = true)
+    @JsonIgnore
+    private Diagnosis diagnosis;
 
     public Prescription getPrescription() {
         return this.prescription;
@@ -53,12 +50,12 @@ public class Visit {
         this.prescription = prescription;
     }
 
-    public Disease getDisease() {
-        return this.disease;
+    public Diagnosis getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setDisease(Disease disease) {
-        this.disease = disease;
+    public void setDiagnosis(Diagnosis diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
     public Time getTime() {

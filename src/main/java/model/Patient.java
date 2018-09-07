@@ -14,10 +14,7 @@ enum Gender {
 @Entity
 public class Patient {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "sequence-generator"
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-generator")
     @SequenceGenerator(name = "sequence-generator", sequenceName = "patient_sequence", allocationSize = 1)
     private int id;
 
