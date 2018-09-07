@@ -1,6 +1,8 @@
 package controller;
 
+import model.DrugCountsDTO;
 import model.DrugInfo;
+import model.DrugNameCountsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import service.DrugInfoService;
@@ -29,5 +31,10 @@ public class DrugInfoController {
     )
     public List<DrugInfo> getDrugInfos(@RequestParam("prescriptionId") int prescriptionId) {
         return this.drugInfoService.getDrugInfos(prescriptionId);
+    }
+
+    @RequestMapping(path = "drugCounts", method = RequestMethod.GET)
+    public List<DrugNameCountsDTO> getDrugCounts() {
+        return this.drugInfoService.getDrugCounts();
     }
 }
