@@ -1,15 +1,17 @@
 package service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.transaction.Transactional;
-import model.Visit;
+
+import model.*;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,24 +58,22 @@ public class VisitService {
         return query.list();
     }
 
-    public Map<String, Integer> getVisits() {
-        Map<String, Integer> map = new HashMap();
+    public List<VisitCountsDatestringDTO> getVisitCounts()
+    {
+        List<VisitCountsDTO> results = sessionFactory.getCurrentSession().createCriteria(Visit.class)
+                .setProjection(Projections.projectionList()
+                        .add(Projections.groupProperty("date"), "date")
+                        .add(Projections.rowCount(), "count"))
+                .setResultTransformer(Transformers.aliasToBean(VisitCountsDTO.class))
+                .list();
 
-        String dateString;
-        for(Iterator var2 = this.getAllVisits().iterator(); var2.hasNext(); map.put(dateString, (Integer)map.get(dateString) + 1)) {
-            Visit visit = (Visit)var2.next();
-            Date date = visit.getDate();
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(date);
-            int year = cal.get(1);
-            int month = cal.get(2) + 1;
-            int day = cal.get(5);
-            dateString = year + "-" + month + "-" + day;
-            if (!map.containsKey(dateString)) {
-                map.put(dateString, 0);
-            }
+        List<VisitCountsDatestringDTO> res = new ArrayList<>();
+        for (VisitCountsDTO dto : results) {
+            Date date = dto.getDate();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String text = df.format(date);
+            res.add(new VisitCountsDatestringDTO(text, dto.getCount()));
         }
-
-        return map;
+        return res;
     }
 }

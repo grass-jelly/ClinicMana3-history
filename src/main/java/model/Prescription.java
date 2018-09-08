@@ -8,9 +8,8 @@ import java.util.Set;
 @Entity
 public class Prescription {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-generator")
+    @SequenceGenerator(name = "sequence-generator", sequenceName = "prescription_sequence", allocationSize = 1)
     private int id;
     @OneToOne
     private Visit visit;

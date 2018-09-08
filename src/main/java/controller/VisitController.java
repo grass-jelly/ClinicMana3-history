@@ -1,9 +1,11 @@
 package controller;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
-import java.util.Map;
+
 import model.Visit;
+import model.VisitCountsDTO;
+import model.VisitCountsDatestringDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -84,7 +86,7 @@ public class VisitController {
             path = {"visitsCountPerDay"},
             method = {RequestMethod.GET}
     )
-    public Map<String, Integer> getVisitsCounts() {
-        return this.visitService.getVisits();
+    public List<VisitCountsDatestringDTO> getVisitCounts() {
+        return this.visitService.getVisitCounts();
     }
 }
