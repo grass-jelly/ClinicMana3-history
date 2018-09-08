@@ -2,17 +2,13 @@ package model;
 
 import javax.persistence.*;
 
-/**
- * Created by CoT on 11/22/17.
- */
-
 @Entity
 @Table
 public class UserRole {
 
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-generator")
+    @SequenceGenerator(name = "sequence-generator", sequenceName = "userrole_sequence", allocationSize = 1)
     private int id;
 
     @ManyToOne

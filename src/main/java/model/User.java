@@ -3,16 +3,12 @@ package model;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Created by CoT on 11/22/17.
- */
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-generator")
+    @SequenceGenerator(name = "sequence-generator", sequenceName = "user_sequence", allocationSize = 1)
     private int id;
 
     @Column

@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -14,9 +15,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableTransactionManagement
 @EnableWebMvc
-@ComponentScan(
-        basePackages = {"controller", "config", "service"}
-)
+@ComponentScan(basePackages = {"controller", "config", "service"})
+@Import(SecurityConfig.class)
 public class AppConfig {
     public AppConfig() {
     }
