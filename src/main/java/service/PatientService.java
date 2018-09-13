@@ -44,15 +44,15 @@ public class PatientService {
         this.sessionFactory.getCurrentSession().update(patient);
     }
 
-    public List<Patient> getPatients(String name) {
+    public List<Patient> getPatientsByName(String name) {
         Query query = this.sessionFactory.getCurrentSession().createQuery("from Patient where name = :name");
         query.setString("name", name);
         return query.list();
     }
 
-    public List<Patient> getPatients(Date date) {
+    public List<Patient> getPatientsByDob(String date) {
         Query query = this.sessionFactory.getCurrentSession().createQuery("from Patient where dateOfBirth = :date");
-        query.setParameter("date", date);
+        query.setString("date", date);
         return query.list();
     }
 }

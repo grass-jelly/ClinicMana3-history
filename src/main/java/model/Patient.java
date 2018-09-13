@@ -2,7 +2,6 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.sql.Date;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -21,7 +20,7 @@ public class Patient {
     @Column
     private String name;
     @Column
-    private Date dateOfBirth;
+    private String dateOfBirth;
     @Column
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -33,11 +32,11 @@ public class Patient {
     @JsonIgnore
     private Set<Visit> visits;
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return this.dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

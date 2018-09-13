@@ -1,6 +1,5 @@
 package controller;
 
-import java.sql.Date;
 import java.util.List;
 import model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,15 +66,15 @@ public class PatientController {
             path = {"patientsByName"},
             method = {RequestMethod.GET}
     )
-    public List<Patient> getPatients(@RequestParam("name") String name) {
-        return this.patientService.getPatients(name);
+    public List<Patient> getPatientsByName(@RequestParam("name") String name) {
+        return this.patientService.getPatientsByName(name);
     }
 
     @RequestMapping(
             path = {"patientsByDOB"},
             method = {RequestMethod.GET}
     )
-    public List<Patient> getPatients(@RequestParam("dob") Date date) {
-        return this.patientService.getPatients(date);
+    public List<Patient> getPatientsByDob(@RequestParam("dob") String date) {
+        return this.patientService.getPatientsByDob(date);
     }
 }

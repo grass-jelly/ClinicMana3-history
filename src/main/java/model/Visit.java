@@ -2,8 +2,6 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.sql.Time;
-import java.sql.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -16,9 +14,9 @@ public class Visit {
     @ManyToOne
     private Patient patient;
     @Column
-    private Date date;
+    private String date;
     @Column
-    private Time time;
+    private String time;
     @Column
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> problems;
@@ -48,19 +46,19 @@ public class Visit {
         this.diagnosis = diagnosis;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return this.time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return this.date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

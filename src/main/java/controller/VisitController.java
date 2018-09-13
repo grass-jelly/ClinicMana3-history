@@ -1,10 +1,8 @@
 package controller;
 
-import java.sql.Date;
 import java.util.List;
 
 import model.Visit;
-import model.VisitCountsDTO;
 import model.VisitCountsDatestringDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,7 +68,7 @@ public class VisitController {
             path = {"visitsByDay"},
             method = {RequestMethod.GET}
     )
-    public List<Visit> getVisits(@RequestParam("date") Date date) {
+    public List<Visit> getVisits(@RequestParam("date") String date) {
         return this.visitService.getVisits(date);
     }
 

@@ -1,9 +1,8 @@
 package service;
 
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -25,6 +24,11 @@ public class VisitService {
     }
 
     public int addVisit(Visit visit) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat tf = new SimpleDateFormat("HH:mm:ss");
+        Date dateObj = new Date();
+        visit.setDate(df.format(dateObj));
+        visit.setTime(tf.format(dateObj));
         this.sessionFactory.getCurrentSession().save(visit);
         return visit.getId();
     }
@@ -46,9 +50,9 @@ public class VisitService {
         this.sessionFactory.getCurrentSession().update(visit);
     }
 
-    public List<Visit> getVisits(Date date) {
+    public List<Visit> getVisits(String date) {
         Query query = this.sessionFactory.getCurrentSession().createQuery("from Visit where date = :date");
-        query.setParameter("date", date);
+        query.setString("date", date);
         return query.list();
     }
 
@@ -60,20 +64,13 @@ public class VisitService {
 
     public List<VisitCountsDatestringDTO> getVisitCounts()
     {
-        List<VisitCountsDTO> results = sessionFactory.getCurrentSession().createCriteria(Visit.class)
+        List<VisitCountsDatestringDTO> results = sessionFactory.getCurrentSession().createCriteria(Visit.class)
                 .setProjection(Projections.projectionList()
                         .add(Projections.groupProperty("date"), "date")
                         .add(Projections.rowCount(), "count"))
-                .setResultTransformer(Transformers.aliasToBean(VisitCountsDTO.class))
+                .setResultTransformer(Transformers.aliasToBean(VisitCountsDatestringDTO.class))
                 .list();
 
-        List<VisitCountsDatestringDTO> res = new ArrayList<>();
-        for (VisitCountsDTO dto : results) {
-            Date date = dto.getDate();
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            String text = df.format(date);
-            res.add(new VisitCountsDatestringDTO(text, dto.getCount()));
-        }
-        return res;
+        return results;
     }
 }

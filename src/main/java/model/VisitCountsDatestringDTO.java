@@ -4,11 +4,6 @@ public class VisitCountsDatestringDTO {
     private String date;
     private Long count;
 
-    public VisitCountsDatestringDTO(String text, Long count) {
-        this.date = text;
-        this.count = count;
-    }
-
     public Long getCount() {
         return count;
     }
