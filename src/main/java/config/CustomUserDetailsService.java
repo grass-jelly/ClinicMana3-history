@@ -15,17 +15,25 @@ import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+    @Autowired
+    UserService userService;
 
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-        GrantedAuthority grantedAuthority = new GrantedAuthority() {
-            public String getAuthority() {
-                return "ROLE_DOCTOR";
-            }
-        };
-        list.add(grantedAuthority);
+        List<UserRole> userRoles = userService.getUserRoleByUser(s);
+        model.User modelUser = userRoles.get(0).getUser();
 
-        User user = new User("doctor", "doctor", true, true, true, true, list );
+        List<GrantedAuthority> list = new ArrayList<>();
+        for (final UserRole userRole : userRoles) {
+            GrantedAuthority role = new GrantedAuthority() {
+                @Override
+                public String getAuthority() {
+                    return userRole.getRole().getAuthority();
+                }
+            };
+            list.add(role);
+        }
+
+        User user = new User(s, modelUser.getPassword(), true, true, true, true, list );
 
         return user;
     }
