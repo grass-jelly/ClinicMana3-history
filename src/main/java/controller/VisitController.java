@@ -24,6 +24,7 @@ public class VisitController {
     public VisitController() {
     }
 
+
     @RequestMapping(
             path = {"visits"},
             method = {RequestMethod.POST}
@@ -38,6 +39,14 @@ public class VisitController {
     )
     public List<Visit> getVisits() {
         return this.visitService.getAllVisits();
+    }
+
+    @RequestMapping(
+            path = {"visits/current"},
+            method = {RequestMethod.GET}
+    )
+    public List<Visit> getCurrentVisits() {
+        return this.visitService.getCurrentVisits();
     }
 
     @RequestMapping(

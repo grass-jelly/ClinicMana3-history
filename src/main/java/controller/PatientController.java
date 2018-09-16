@@ -26,7 +26,7 @@ public class PatientController {
             path = {"patients"},
             method = {RequestMethod.POST}
     )
-    public int addPatient(@RequestBody Patient patient) {
+    public Patient addPatient(@RequestBody Patient patient) {
         return this.patientService.addPatient(patient);
     }
 

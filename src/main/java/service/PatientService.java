@@ -1,6 +1,5 @@
 package service;
 
-import java.sql.Date;
 import java.util.List;
 import javax.transaction.Transactional;
 import model.Patient;
@@ -22,9 +21,9 @@ public class PatientService {
         this.sessionFactory = sessionFactory;
     }
 
-    public int addPatient(Patient patient) {
+    public Patient addPatient(Patient patient) {
         this.sessionFactory.getCurrentSession().save(patient);
-        return patient.getId();
+        return patient;
     }
 
     public List<Patient> getAllPatients() {

@@ -18,8 +18,7 @@ public class Visit {
     @Column
     private String time;
     @Column
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> problems;
+    private String problems;
     @OneToOne(mappedBy = "visit", orphanRemoval = true)
     @JsonIgnore
     private Prescription prescription;
@@ -29,6 +28,16 @@ public class Visit {
     @OneToOne(mappedBy = "visit", orphanRemoval = true)
     @JsonIgnore
     private Diagnosis diagnosis;
+    @Column
+    private boolean checkedOut;
+
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
+    }
 
     public Prescription getPrescription() {
         return this.prescription;
@@ -78,11 +87,11 @@ public class Visit {
         this.patient = patient;
     }
 
-    public List<String> getProblems() {
+    public String getProblems() {
         return this.problems;
     }
 
-    public void setProblems(List<String> problems) {
+    public void setProblems(String problems) {
         this.problems = problems;
     }
 

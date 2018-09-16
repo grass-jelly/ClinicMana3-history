@@ -27,7 +27,7 @@ public class AppConfig {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.put("hibernate.show_sql", true);
-        properties.put("hibernate.hbm2ddl.auto", "create-drop");
+        properties.put("hibernate.hbm2ddl.auto", "update");
         sessionFactoryBean.setPackagesToScan(new String[]{"model"});
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");

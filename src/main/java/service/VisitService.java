@@ -29,12 +29,17 @@ public class VisitService {
         Date dateObj = new Date();
         visit.setDate(df.format(dateObj));
         visit.setTime(tf.format(dateObj));
+        visit.setCheckedOut(false);
         this.sessionFactory.getCurrentSession().save(visit);
         return visit.getId();
     }
 
     public List<Visit> getAllVisits() {
         return this.sessionFactory.getCurrentSession().createQuery("from Visit").list();
+    }
+
+    public List<Visit> getCurrentVisits() {
+        return this.sessionFactory.getCurrentSession().createQuery("from Visit where checkedOut = false").list();
     }
 
     public Visit getVisit(int id) {
