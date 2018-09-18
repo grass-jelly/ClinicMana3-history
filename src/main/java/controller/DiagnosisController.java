@@ -20,7 +20,7 @@ public class DiagnosisController {
             path = {"diagnoses"},
             method = {RequestMethod.POST}
     )
-    public int addDiagnosis(@RequestBody Diagnosis diagnosis) {
+    public Diagnosis addDiagnosis(@RequestBody Diagnosis diagnosis) {
         return this.diagnosisService.addDiagnosis(diagnosis);
     }
 

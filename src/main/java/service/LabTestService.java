@@ -14,9 +14,9 @@ public class LabTestService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public int addLabTest(LabTest labTest) {
+    public LabTest addLabTest(LabTest labTest) {
         this.sessionFactory.getCurrentSession().save(labTest);
-        return labTest.getId();
+        return labTest;
     }
 
     public List<LabTest> getAllLabTests() {

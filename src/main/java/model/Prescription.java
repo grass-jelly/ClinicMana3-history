@@ -13,7 +13,7 @@ public class Prescription {
     private int id;
     @OneToOne
     private Visit visit;
-    @OneToMany(mappedBy = "prescription")
+    @OneToMany(mappedBy = "prescription", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Set<DrugInfo> drugInfos;
 

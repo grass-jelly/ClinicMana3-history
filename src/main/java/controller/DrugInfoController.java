@@ -21,7 +21,7 @@ public class DrugInfoController {
             path = {"drugInfos"},
             method = {RequestMethod.POST}
     )
-    public int addPrescriptionDrug(@RequestBody DrugInfo drugInfo) {
+    public DrugInfo addPrescriptionDrug(@RequestBody DrugInfo drugInfo) {
         return this.drugInfoService.addDrugInfo(drugInfo);
     }
 

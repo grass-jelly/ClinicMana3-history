@@ -22,7 +22,7 @@ public class LabTestController {
             path = {"labTests"},
             method = {RequestMethod.POST}
     )
-    public int addLabTest(@RequestBody LabTest labTest) {
+    public LabTest addLabTest(@RequestBody LabTest labTest) {
         return this.labTestService.addLabTest(labTest);
     }
 

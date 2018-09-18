@@ -29,7 +29,7 @@ public class VisitController {
             path = {"visits"},
             method = {RequestMethod.POST}
     )
-    public int addVisit(@RequestBody Visit visit) {
+    public Visit addVisit(@RequestBody Visit visit) {
         return this.visitService.addVisit(visit);
     }
 

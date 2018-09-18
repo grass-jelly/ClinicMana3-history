@@ -14,9 +14,9 @@ public class DiagnosisService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public int addDiagnosis(Diagnosis diagnosis) {
+    public Diagnosis addDiagnosis(Diagnosis diagnosis) {
         this.sessionFactory.getCurrentSession().save(diagnosis);
-        return diagnosis.getId();
+        return diagnosis;
     }
 
     public List<Diagnosis> getAllDiagnoses() {

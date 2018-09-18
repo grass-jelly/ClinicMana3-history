@@ -21,9 +21,9 @@ public class DrugInfoService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public int addDrugInfo(DrugInfo drugInfo) {
+    public DrugInfo addDrugInfo(DrugInfo drugInfo) {
         this.sessionFactory.getCurrentSession().save(drugInfo);
-        return drugInfo.getId();
+        return drugInfo;
     }
 
     public List<DrugInfo> getDrugInfos(int prescriptionId) {

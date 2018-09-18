@@ -31,7 +31,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authorities("ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write")
                 .resourceIds("resource-id")
-                .accessTokenValiditySeconds(1200)
+                .accessTokenValiditySeconds(3600)
                 .secret("secret");
     }
 

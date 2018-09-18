@@ -23,7 +23,7 @@ public class VisitService {
     public VisitService() {
     }
 
-    public int addVisit(Visit visit) {
+    public Visit addVisit(Visit visit) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         DateFormat tf = new SimpleDateFormat("HH:mm:ss");
         Date dateObj = new Date();
@@ -31,7 +31,7 @@ public class VisitService {
         visit.setTime(tf.format(dateObj));
         visit.setCheckedOut(false);
         this.sessionFactory.getCurrentSession().save(visit);
-        return visit.getId();
+        return visit;
     }
 
     public List<Visit> getAllVisits() {

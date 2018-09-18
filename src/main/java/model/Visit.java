@@ -19,13 +19,13 @@ public class Visit {
     private String time;
     @Column
     private String problems;
-    @OneToOne(mappedBy = "visit", orphanRemoval = true)
+    @OneToOne(mappedBy = "visit", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Prescription prescription;
-    @OneToOne(mappedBy = "visit", orphanRemoval = true)
+    @OneToOne(mappedBy = "visit", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private LabTest labTest;
-    @OneToOne(mappedBy = "visit", orphanRemoval = true)
+    @OneToOne(mappedBy = "visit", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private Diagnosis diagnosis;
     @Column

@@ -52,26 +52,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-//    @Autowired
-//    UserService userService;
-//
-//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-//        List<UserRole> userRoles = userService.getUserRoleByUser(s);
-//        model.User modelUser = userRoles.get(0).getUser();
-//
-//        List<GrantedAuthority> list = new ArrayList<>();
-//        for (final UserRole userRole : userRoles) {
-//            GrantedAuthority role = new GrantedAuthority() {
-//                @Override
-//                public String getAuthority() {
-//                    return userRole.getRole().getAuthority();
-//                }
-//            };
-//            list.add(role);
-//        }
-//
-//        User user = new User(s, modelUser.getPassword(), true, true, true, true, list );
-//
-//        return user;
-//    }
 }
