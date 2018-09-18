@@ -35,9 +35,14 @@ public class AppConfig {
 //        dataSource.setUsername("rmit");
 //        dataSource.setPassword("rmit");
 
-        dataSource.setUrl("jdbc:postgresql://ec2-174-129-32-37.compute-1.amazonaws.com:5432/dc7i0tb60v714k");
-        dataSource.setUsername("aiwhybipdkbuah");
-        dataSource.setPassword("aiwhybipdkbuah&password=f65da6acaec22e5a2f50d805d1b9ff1d57a955f54a9edb47708b676bbc2408fa");
+
+        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        String username = System.getenv("JDBC_DATABASE_USERNAME");
+        String password = System.getenv("JDBC_DATABASE_PASSWORD");
+        dataSource.setUrl(dbUrl);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+
         sessionFactoryBean.setDataSource(dataSource);
         sessionFactoryBean.setHibernateProperties(properties);
         return sessionFactoryBean;
